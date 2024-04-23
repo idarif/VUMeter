@@ -1,3 +1,4 @@
+# Write your code here :-)
 import board
 from digitalio import DigitalInOut, Direction
 from analogio import AnalogIn
@@ -13,6 +14,14 @@ led_pins = [
     board.IO21,
     board.IO26, # type: ignore
     board.IO47,
+    board.IO33,
+    board.IO34,
+    board.IO48,
+    board.IO35,
+    board.IO36,
+    board.IO37,
+    board.IO38,
+    board.IO39,
     # do the rest...
 ]
 
@@ -25,12 +34,28 @@ for led in leds:
 while True:
     volume = microphone.value
 
-    print(volume)
 
-    leds[0].value = not leds[0].value
-    leds[1].value = not leds[0].value
+    for (i,led) in enumerate(leds):
 
-    sleep(1)
+        if (volume > 19000 + 3000*i):
+            leds[i].value = 1
+        else:
+            leds[i].value = 0
+
+    '''
+    for (i,led) in enumerate(leds):
+
+        if (volume > 1900 - 3000*i):
+            leds[i].value = 1
+        else:
+            leds[i].value = 0
+            sleep(.5)
+   # delay = max(0.1, 0.1 - (volume / 65535) * 0.09)  # Adjust the range and scaling as needed
+    '''
+    #
+
+
+
 
     # instead of blinking,
     # how can you make the LEDs
